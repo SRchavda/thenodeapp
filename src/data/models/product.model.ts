@@ -1,11 +1,15 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema, Document, Types } from 'mongoose';
 import Product from '../../interfaces/product';
 
-interface ProductDocument extends Product, Document {}
+interface ProductDocument extends Product, Document {
+  _id: Types.ObjectId;
+}
 
 const productSchema = new Schema<ProductDocument>({
-  id: { type: String, required: true, unique: true },
+
+  _id: { type: mongoose.Schema.Types.ObjectId, required: true, auto: true },
   name: { type: String, required: true },
+  
   compareAtPrice: { type: Number, required: true },
   price: { type: Number, required: true },
   description: { type: String, required: true },
