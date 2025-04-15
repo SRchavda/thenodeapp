@@ -1,15 +1,14 @@
-import mongoose, { Schema, Document, Types } from 'mongoose';
-import Product from '../../interfaces/product';
+import mongoose, { Schema, Document, Types } from "mongoose";
+import Product from "../../interfaces/product";
 
-interface ProductDocument extends Product, Document {
+interface ProductDocument extends Omit<Product, "id">, Document {
   _id: Types.ObjectId;
 }
 
 const productSchema = new Schema<ProductDocument>({
-
   _id: { type: mongoose.Schema.Types.ObjectId, required: true, auto: true },
   name: { type: String, required: true },
-  
+
   compareAtPrice: { type: Number, required: true },
   price: { type: Number, required: true },
   description: { type: String, required: true },
@@ -27,6 +26,6 @@ const productSchema = new Schema<ProductDocument>({
   tags: { type: [String], required: false },
 });
 
-const ProductModel = mongoose.model<ProductDocument>('Product', productSchema);
+const ProductModel = mongoose.model<ProductDocument>("Product", productSchema);
 
 export default ProductModel;

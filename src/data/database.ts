@@ -1,12 +1,14 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
+
+const mongoUrl = process.env.MONGO_CONN_URL || "mongodb://localhost:27017/oms";
 
 class Database {
   async connect() {
     try {
-      await mongoose.connect('mongodb+srv://shivrajchavda1008:whyRCB18@cluster0.e1dtm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'); // Replace with your connection string
-      console.log('MongoDB connected');
+      await mongoose.connect(mongoUrl); // Replace with your connection string
+      console.log("MongoDB connected");
     } catch (error) {
-      console.error('MongoDB connection error:', error);
+      console.error("MongoDB connection error:", error);
       throw error; // Re-throw the error to be handled by the caller
     }
   }
