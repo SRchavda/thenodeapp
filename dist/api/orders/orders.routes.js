@@ -25,6 +25,16 @@ router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(500).json({ error: 'Failed to create order' });
     }
 }));
+router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const orders = yield order_service_1.default.getAllOrders();
+        res.json(orders);
+    }
+    catch (error) {
+        console.error('Error getting all orders:', error);
+        res.status(500).json({ error: 'Failed to get orders' });
+    }
+}));
 router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const order = yield order_service_1.default.getOrderById(req.params.id);

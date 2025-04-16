@@ -1,15 +1,20 @@
 import mongoose from "mongoose";
 
-const mongoUrl = process.env.MONGO_CONN_URL || "mongodb://localhost:27017/oms";
+const mongoUrl: string =
+  "mongodb+srv://shivrajchavda1008:whyRCB18@cluster0.e1dtm.mongodb.net/OMS-P?retryWrites=true&w=majority";
 
 class Database {
   async connect() {
     try {
-      await mongoose.connect(mongoUrl); // Replace with your connection string
-      console.log("MongoDB connected");
+      await mongoose.connect(mongoUrl, {
+        // Add connection options
+        serverSelectionTimeoutMS: 5000, // Timeout after 5s
+        connectTimeoutMS: 10000, // Timeout after 10s
+      });
+      console.log("MongoDB connected successfully");
     } catch (error) {
       console.error("MongoDB connection error:", error);
-      throw error; // Re-throw the error to be handled by the caller
+      throw error;
     }
   }
 }

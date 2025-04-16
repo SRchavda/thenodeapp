@@ -17,7 +17,8 @@ class ProductRepository {
     create(product) {
         return __awaiter(this, void 0, void 0, function* () {
             const newProduct = new product_model_1.default(product);
-            return yield newProduct.save();
+            const savedProduct = yield newProduct.save();
+            return Object.assign({ id: savedProduct.id }, savedProduct.toObject());
         });
     }
     findById(id) {

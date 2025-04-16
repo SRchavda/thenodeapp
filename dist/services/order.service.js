@@ -34,5 +34,10 @@ class OrderService {
             return order_repository_1.default.findById(id);
         });
     }
+    getAllOrders() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return order_repository_1.default.findAll();
+        });
+    }
 }
 exports.default = new OrderService();

@@ -17,12 +17,18 @@ class OrderRepository {
     create(order) {
         return __awaiter(this, void 0, void 0, function* () {
             const newOrder = new order_model_1.default(order);
-            return yield newOrder.save();
+            const savedOrder = yield newOrder.save();
+            return Object.assign({ id: savedOrder.id }, savedOrder.toObject());
         });
     }
     findById(id) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield order_model_1.default.findOne({ id });
+        });
+    }
+    findAll() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield order_model_1.default.find({});
         });
     }
 }

@@ -17,7 +17,8 @@ class CustomerRepository {
     create(customer) {
         return __awaiter(this, void 0, void 0, function* () {
             const newCustomer = new customer_model_1.default(customer);
-            return yield newCustomer.save();
+            const savedCustomer = yield newCustomer.save();
+            return Object.assign({ id: savedCustomer.id }, savedCustomer.toObject());
         });
     }
     findById(id) {
