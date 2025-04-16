@@ -12,6 +12,16 @@ router.post('/', async (req: Request, res: Response) => {
   }
 });
 
+router.get('/', async (req: Request, res: Response) => {
+  try {
+    const orders = await OrderService.getAllOrders();
+    res.json(orders);
+  } catch (error) {
+    console.error('Error getting all orders:', error);
+    res.status(500).json({ error: 'Failed to get orders' });
+  }
+});
+
 router.get('/:id', async (req: Request, res: Response) => {
   try {
     const order = await OrderService.getOrderById(req.params.id);

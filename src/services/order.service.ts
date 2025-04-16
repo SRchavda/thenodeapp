@@ -19,6 +19,10 @@ class OrderService {
   async getOrderById(id: string): Promise<Order | null> {
       return OrderRepository.findById(id);
   }
+
+  async getAllOrders(): Promise<Order[]> {
+    return OrderRepository.findAll();
+  }
 }
 
 export default new OrderService();

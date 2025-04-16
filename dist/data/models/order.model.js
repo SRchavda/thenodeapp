@@ -23,18 +23,21 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var mongoose_1 = __importStar(require("mongoose"));
-var orderSchema = new mongoose_1.Schema({
-    id: { type: String, required: true, unique: true },
+const mongoose_1 = __importStar(require("mongoose"));
+const orderSchema = new mongoose_1.Schema({
+    _id: { type: mongoose_1.default.Schema.Types.ObjectId, required: true, auto: true },
     customerId: { type: String, required: true },
     productId: { type: String, required: true },
-    platform: { type: String, enum: ['Website', 'Instagram', 'WhatsApp'], required: true },
+    platform: {
+        type: String,
+        enum: ["Website", "Instagram", "WhatsApp"],
+        required: true,
+    },
     quantity: { type: Number, required: true },
     total: { type: Number, required: true },
     date: { type: String, required: true },
     couponCode: { type: String, required: false },
     discount: { type: Number, required: false },
 });
-var OrderModel = mongoose_1.default.model('Order', orderSchema);
+const OrderModel = mongoose_1.default.model("Order", orderSchema);
 exports.default = OrderModel;
-//# sourceMappingURL=order.model.js.map
